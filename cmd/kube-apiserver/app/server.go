@@ -61,6 +61,9 @@ func init() {
 	utilruntime.Must(logsapi.AddFeatureGates(utilfeature.DefaultMutableFeatureGate))
 }
 
+/// Documentation for NewAPIServerCommand is generally poor - What are the input parameters and data type, what is the return value and data type?
+/// Following function is 65 lines of code (not bad), good variable naming, has some comments (not none at all, but not too many)
+
 // NewAPIServerCommand creates a *cobra.Command object with default parameters
 func NewAPIServerCommand() *cobra.Command {
 	s := options.NewServerRunOptions()
@@ -130,6 +133,9 @@ cluster's shared state through which all other components interact.`,
 	return cmd
 }
 
+/// Documentation for Run is generally poor - What are the input parameters and data type, what is the return value and data type?
+/// Following function is 25 lines of code (not bad), good variable naming, has some comments (not none at all, but not too many)
+
 // Run runs the specified APIServer.  This should never exit.
 func Run(ctx context.Context, opts options.CompletedOptions) error {
 	// To help debugging, immediately log version
@@ -158,6 +164,9 @@ func Run(ctx context.Context, opts options.CompletedOptions) error {
 	return prepared.Run(ctx)
 }
 
+/// Documentation for CreateServerChain is generally poor - What are the input parameters and data type, what is the return value and data type?
+/// Following function is 21 lines of code (not bad), good variable naming, has some comments (not none at all, but not too many)
+
 // CreateServerChain creates the apiservers connected via delegation.
 func CreateServerChain(config CompletedConfig) (*aggregatorapiserver.APIAggregator, error) {
 	notFoundHandler := notfoundhandler.New(config.KubeAPIs.ControlPlane.Generic.Serializer, genericapifilters.NoMuxAndDiscoveryIncompleteKey)
@@ -181,6 +190,9 @@ func CreateServerChain(config CompletedConfig) (*aggregatorapiserver.APIAggregat
 
 	return aggregatorServer, nil
 }
+
+/// Documentation for CreateKubeAPIServerConfig is generally poor - What are the input parameters and data type, what is the return value and data type?
+/// Following function is 63 lines of code (not bad), good variable naming, has some comments (not none at all, but not too many)
 
 // CreateKubeAPIServerConfig creates all the resources for running the API server, but runs none of them
 func CreateKubeAPIServerConfig(
@@ -253,6 +265,10 @@ var testServiceResolver webhook.ServiceResolver
 
 // SetServiceResolverForTests allows the service resolver to be overridden during tests.
 // Tests using this function must run serially as this function is not safe to call concurrently with server start.
+
+/// Documentation for SetServiceResolverForTests is generally poor - What are the input parameters and data type, what is the return value and data type?
+/// Following function is 10 lines of code (not bad), good variable naming, has some comments (not none at all, but not too many)
+
 func SetServiceResolverForTests(resolver webhook.ServiceResolver) func() {
 	if testServiceResolver != nil {
 		panic("test service resolver is set: tests are either running concurrently or clean up was skipped")
@@ -264,6 +280,9 @@ func SetServiceResolverForTests(resolver webhook.ServiceResolver) func() {
 		testServiceResolver = nil
 	}
 }
+
+/// Documentation for buildServiceResolver is generally poor - What are the input parameters and data type, what is the return value and data type?
+/// Following function is 20+ lines of code (not bad), good variable naming, has some comments (not none at all, but not too many)
 
 func buildServiceResolver(enabledAggregatorRouting bool, hostname string, informer clientgoinformers.SharedInformerFactory) webhook.ServiceResolver {
 	if testServiceResolver != nil {
